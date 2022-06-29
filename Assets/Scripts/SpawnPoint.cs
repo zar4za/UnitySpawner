@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private Enemy _enemyPrefab;
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(Player player)
     {
-        Instantiate(_enemyPrefab, transform.position, transform.rotation);
+        Enemy enemy = Instantiate(_enemyPrefab, transform.position, transform.rotation);
+        enemy.Init(player);
     }
 }

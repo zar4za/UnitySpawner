@@ -8,9 +8,13 @@ public class Enemy : MonoBehaviour
     private Player _target;
     private Rigidbody _rigidbody;
 
+    public void Init(Player target)
+    {
+        _target = target;
+    }
+
     private void Start()
     {
-        _target = FindObjectOfType<Player>();
         _rigidbody = GetComponent<Rigidbody>();
     }
 

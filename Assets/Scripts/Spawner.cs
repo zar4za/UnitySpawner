@@ -5,12 +5,13 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private bool _canSpawn = true;
     [SerializeField] private float _spawnDelaySeconds = 2f;
+    [SerializeField] private Player _enemyTarget;
 
     private SpawnPoint[] _spawnPoints;
 
     private void Start()
     {
-        _spawnPoints = FindObjectsOfType<SpawnPoint>();
+        _spawnPoints = GetComponentsInChildren<SpawnPoint>();
         StartCoroutine(SpawnEnemies());
     }
 
@@ -19,7 +20,7 @@ public class Spawner : MonoBehaviour
         while (_canSpawn)
         {
             int spawnPointIndex = Random.Range(0, _spawnPoints.Length);
-            _spawnPoints[spawnPointIndex].SpawnEnemy();
+            _spawnPoints[spawnPointIndex].SpawnEnemy(_enemyTarget);
             yield return new WaitForSeconds(_spawnDelaySeconds);
         }
     }
